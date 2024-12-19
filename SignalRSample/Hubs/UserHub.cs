@@ -18,10 +18,11 @@ namespace SignalRSample.Hubs
             Clients.All.SendAsync("updateTotalUsers", TotalUsers);
             return base.OnDisconnectedAsync(exception);
         }
-        public async Task NewWindowLoaded()
+        public async Task<string> NewWindowLoaded()
         {
             TotalViews++;
             await Clients.All.SendAsync("updateTotalViews",TotalViews);
+            return $"total views -{TotalViews}";
         }
     }
 }
